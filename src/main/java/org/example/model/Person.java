@@ -2,9 +2,12 @@ package org.example.model;
 
 ;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.annotation.Generated;
 import javax.persistence.*;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +25,12 @@ public class Person {
     private int age;
 
     @OneToMany(mappedBy = "owner")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Item> items;
+
+    //@OneToOne(mappedBy = "person")
+    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    //private Passport passport;
 
     public Person() {
     }
@@ -56,12 +64,23 @@ public class Person {
         this.age = age;
     }
 
+   /* public void setPassport(Passport passport) {
+        this.passport = passport;
+        passport.setPerson(this);
+
+    }*/
+
+    /*public Passport getPassport() {
+        return passport;
+    }*/
+
     public List<Item> getItems() {
         return items;
     }
 
     public void setItems(List<Item> items) {
         this.items = items;
+
     }
 
     @Override
@@ -72,4 +91,5 @@ public class Person {
                 ", age=" + age +
                 '}';
     }
+
 }

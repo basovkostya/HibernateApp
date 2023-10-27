@@ -1,14 +1,14 @@
 package org.example;
 
-import org.example.model.Item;
-import org.example.model.Person;
+import antlr.collections.List;
+import org.example.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 
 /**
@@ -26,9 +26,9 @@ public class App {
         try{
         session.beginTransaction();
 
-        Person person = session.get(Person.class, 2);
-        session.remove(person);
-        person.getItems().forEach(i -> i.setOwner(null));
+        Person person = session.get(Person.class, 1);
+            System.out.println("Получили чеовека");
+            System.out.println(person.getItems());
 
         session.getTransaction().commit();
         }

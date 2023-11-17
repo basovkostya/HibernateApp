@@ -28,7 +28,7 @@ public class App {
 
         Person person = session.get(Person.class, 1);
             System.out.println("Получили чеовека");
-            System.out.println(person.getItems());
+           System.out.println(person.getItems());
 
         session.getTransaction().commit();
         }
